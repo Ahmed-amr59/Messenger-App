@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "453796402336",
+    "project_id": "connectx-massenger",
+    "storage_bucket": "connectx-massenger.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453796402336:android:c16f08025493927e2c65c5",
+        "android_client_info": {
+          "package_name": "com.example.f"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAS6XC8Aky6Ei32mbPSxVmkGkAMyKWDgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453796402336:android:81c1f6d9413de0ec2c65c5",
+        "android_client_info": {
+          "package_name": "com.example.firebasetask"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAS6XC8Aky6Ei32mbPSxVmkGkAMyKWDgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453796402336:android:c2f92de66752cbba2c65c5",
+        "android_client_info": {
+          "package_name": "com.example.ismailconnectx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAS6XC8Aky6Ei32mbPSxVmkGkAMyKWDgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

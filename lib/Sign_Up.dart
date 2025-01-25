@@ -23,10 +23,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: Stack(
         children: [
           Positioned.fill(
-          child: CustomPaint(
-            painter: Custompainter(),
+            child: CustomPaint(
+              painter: Custompainter(),
+            ),
           ),
-        ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: Row(
@@ -52,7 +52,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       Text(
                         "Create Account",
-                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
                       ),
                       TextFormField(
                         controller: _nameController,
@@ -104,8 +105,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           prefixIcon: Icon(Icons.lock),
                           suffixIcon: IconButton(
                             icon: password == true
-                                ? Icon(Icons.remove_red_eye_rounded)
-                                : Icon(Icons.visibility_off_rounded),
+                                ? Icon(Icons.visibility_off_rounded)
+                                : Icon(Icons.remove_red_eye_rounded),
                             onPressed: () {
                               setState(() {
                                 password = !password;
@@ -144,7 +145,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ismale = true;
                                   });
                                 },
-                                child: Container(height: 40,
+                                child: Container(
+                                  height: 40,
                                   decoration: BoxDecoration(
                                       color: ismale
                                           ? Colors.deepOrange
@@ -302,15 +304,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
-class Custompainter extends CustomPainter{
+
+class Custompainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint =Paint();
-    Path path =Path();
-    paint.color=Colors.deepOrange;
-    paint.style=PaintingStyle.fill;
-    path.moveTo(size.width*.15, 0 );
-    path.quadraticBezierTo(size.width*.5, size.height*.25, size.width*.85, 0);
+    Paint paint = Paint();
+    Path path = Path();
+    paint.color = Colors.deepOrange;
+    paint.style = PaintingStyle.fill;
+    path.moveTo(size.width * .15, 0);
+    path.quadraticBezierTo(
+        size.width * .5, size.height * .25, size.width * .85, 0);
     path.close();
     paint.strokeCap;
     canvas.drawPath(path, paint);
@@ -320,5 +324,4 @@ class Custompainter extends CustomPainter{
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
   }
-
 }

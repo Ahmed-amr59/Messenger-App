@@ -73,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.red,
@@ -81,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
         ),
+        leading: Icon(Icons.person,color: Colors.white,),
         actions: [
           // Padding(
           //   padding: const EdgeInsets.only(right: 10),
@@ -96,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return _signOut(context);
 
             },
-            icon: Icon(Icons.logout_outlined),
+            icon: Icon(Icons.logout_outlined,color: Colors.white,),
           ),
         ],
       ),
@@ -106,77 +108,79 @@ class _HomeScreenState extends State<HomeScreen> {
           MessageStreamBuilder(),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(color: Colors.grey)),
-                      ),
-                      child: TextFormField(
-                        controller: messageController,
-                        decoration: InputDecoration(
-                          label: Text(
-                            "Type your message",
-                            style: TextStyle(color: Colors.grey[500]),
-                          ),
-                          border: InputBorder.none, // Optional: Add a border
+            child: Container(decoration: BoxDecoration(border: Border(top: BorderSide(color: Colors.deepOrange))),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(color: Colors.grey)),
                         ),
-                        onChanged: (value) {
-                          setState(() {
-                            massagetext = value;
-                          });
-                        },
+                        child: TextFormField(
+                          controller: messageController,
+                          decoration: InputDecoration(
+                            label: Text(
+                              "Type your message",
+                              style: TextStyle(color: Colors.grey[500]),
+                            ),
+                            border: InputBorder.none, // Optional: Add a border
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              massagetext = value;
+                            });
+                          },
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                    width: 8), // Add spacing between TextField and button
-                IconButton(
-                    onPressed: () async {
-                      if (massagetext != null && massagetext!.isNotEmpty) {
-                        try {
-                          messageController.clear();
-                          await FirebaseFirestore.instance
-                              .collection('messages')
-                              .add({
-                            'massage': massagetext,
-                            'id': signedUser.uid,
-                            'Email': signedUser.email,
-                            'time':FieldValue.serverTimestamp(),
-                          });
-                        } catch (e) {
-                          print('Firestore error: $e');
+                  const SizedBox(
+                      width: 8), // Add spacing between TextField and button
+                  IconButton(
+                      onPressed: () async {
+                        if (massagetext != null && massagetext!.isNotEmpty) {
+                          try {
+                            messageController.clear();
+                            await FirebaseFirestore.instance
+                                .collection('messages')
+                                .add({
+                              'massage': massagetext,
+                              'id': signedUser.uid,
+                              'Email': signedUser.email,
+                              'time':FieldValue.serverTimestamp(),
+                            });
+                          } catch (e) {
+                            print('Firestore error: $e');
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                showCloseIcon: true,
+                                content: Text('Failed to send message: $e'),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          }
+                        } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              showCloseIcon: true,
-                              content: Text('Failed to send message: $e'),
+                              content: Text('Please enter a message'),
                               backgroundColor: Colors.red,
                             ),
                           );
                         }
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Please enter a message'),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      }
-                    },
-                    icon: Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.deepOrange),
-                        child: Icon(
-                          Icons.send_rounded,
-                          color: Colors.white,
-                        ))),
-              ],
+                      },
+                      icon: Container(
+                          height: 50,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.deepOrange),
+                          child: Icon(
+                            Icons.send_rounded,
+                            color: Colors.white,
+                          ))),
+                ],
+              ),
             ),
           ),
         ],
@@ -186,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Messageline extends StatelessWidget {
-  Messageline({super.key, this.Email, this.message, required this.isMe});
+  Messageline({super.key, this.Email, this.message, required this.isMe,});
   String? Email;
   String? message;
   bool isMe;
@@ -199,7 +203,7 @@ class Messageline extends StatelessWidget {
         children: [
           Text(
             '$Email',
-            style: TextStyle(color: Colors.black45, fontSize: 12),
+            style: TextStyle(color: Colors.lightBlue, fontSize: 12),
           ),
           Container(
             padding: EdgeInsets.all(10),
@@ -209,7 +213,7 @@ class Messageline extends StatelessWidget {
                     color:isMe? Colors.deepOrangeAccent.withOpacity(.5):Colors.greenAccent.withOpacity(.5),
                     blurRadius: 10,
                     blurStyle: BlurStyle.normal,
-                    offset:isMe? Offset(-6, 5):Offset(6, 5))
+                    offset:isMe? Offset(0, 2):Offset(6, 5))
               ],
               borderRadius: BorderRadius.circular(20),
               color: isMe?Colors.red:Colors.green,
